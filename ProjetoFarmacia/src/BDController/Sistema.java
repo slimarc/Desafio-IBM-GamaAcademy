@@ -44,10 +44,10 @@ public class Sistema {
 	public void AlterarEndereco(int Cliente_idClientes, String logradouro, String numero, String complemento, String bairro, String cidade, String cep, String uf) {
         // Alterar pelos campos do banco de dados, após fazer a classe conexao.java
         try {
-            String query = "update endereco set logradouro = '"+logradouro+"', numero = '"+numero+"', complemento = '"+complemento+"', bairro = '"+bairro+"', cidade = '"+cidade+"', cep = '"+cep+"', uf = '"+uf+"' where idEndereco = '" + Cliente_idClientes + "';";
+            String query = "update endereco set logradouro = '"+logradouro+"', numero = '"+numero+"', complemento = '"+complemento+"', bairro = '"+bairro+"', cidade = '"+cidade+"', cep = '"+cep+"', uf = '"+uf+"' where Cliente_idClientes = '" + Cliente_idClientes + "';";
 
             System.out.println(query);
-            this.statement.executeUpdate(query);
+            this.statement.executeUpdate(query); 
 
         }catch(Exception e) {
             System.out.println("Erro: " + e.getMessage());
@@ -470,7 +470,7 @@ public class Sistema {
 					resultset.getString("f.valor_total")};
 			lista.add(list);
 		}
-		return lista;
+		return lista; 
 		} catch(Exception e) {
 		System.out.println("Error"+e.getMessage());
 		return null;
@@ -479,4 +479,15 @@ public class Sistema {
 	
 	}
 
+	public void postProduto(String nome, String descricao, String preco, String estoque, String flagRemedio, String flagGenerico) {
+		try {
+			double preco2 = Double.parseDouble(preco);
+			int estoque2 = Integer.parseInt(estoque);
+			String query="Insert into produto (codProduto, nome, descricao, preco, estoque, flagRemedio, flagGenerico) values (null, '"+nome+"','"+descricao+"','"+preco2+"','"+estoque2+"','"+flagRemedio+"', '"+flagGenerico+"');";
+			System.out.println(query);
+			this.statement.executeUpdate(query);
+		}catch(Exception e){
+			System.out.println("Error: "+e.getMessage());
+		}
+	}
 }

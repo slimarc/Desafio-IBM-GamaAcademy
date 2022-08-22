@@ -35,7 +35,7 @@ public class ViewHistoricoTransacao extends JPanel {
 		executar.conectar();
 		
 		setBounds(0, 0, 547, 567);
-		setBackground(new Color(217, 217, 217));
+		setBackground(new Color(217, 217, 217)); 
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -52,8 +52,8 @@ public class ViewHistoricoTransacao extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 	
-//				String idCast =  (String) table.getValueAt(table.getSelectedRow(), 0);
-//				System.out.println(idCast);
+//			String idCast =  (String) table.getValueAt(table.getSelectedRow(), 0);
+//			System.out.println(idCast);
 			}
 		});
 		
@@ -70,7 +70,7 @@ public class ViewHistoricoTransacao extends JPanel {
 		};  
 		Object[] column = {"Nota Fiscal", "Codigo Cliente", "CPF", "Nome", "Codigo Produto", "Nome Produto", "Qtds.:", "Valor Unitario", "Valor Unico", "Valor Total"};
 		model.setColumnIdentifiers(column);
-		table.setModel(model);
+		table.setModel(model); 
 		scrollPane.setViewportView(table);
 		TableColumnModel colmod = table.getColumnModel();
 		TableColumn columnCod = colmod.getColumn(3);

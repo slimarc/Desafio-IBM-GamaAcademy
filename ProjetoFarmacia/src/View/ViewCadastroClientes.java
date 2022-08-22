@@ -5,15 +5,16 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.Panel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
 
-import javax.swing.ImageIcon;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import BDController.Sistema;
 
@@ -21,8 +22,9 @@ public class ViewCadastroClientes extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @throws ParseException 
 	 */
-	public ViewCadastroClientes() {
+	public ViewCadastroClientes() throws ParseException {
 		Sistema executar = new Sistema();
 		executar.conectar();
 
@@ -39,44 +41,34 @@ public class ViewCadastroClientes extends JPanel {
 		
 		JLabel lblNewLabel_1_1 = new JLabel("NOME");
 		lblNewLabel_1_1.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblNewLabel_1_1.setBounds(89, 114, 67, 28);
+		lblNewLabel_1_1.setBounds(45, 114, 67, 28);
 		add(lblNewLabel_1_1);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("CPF");
 		lblNewLabel_1_2.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblNewLabel_1_2.setBounds(86, 174, 67, 28);
+		lblNewLabel_1_2.setBounds(45, 174, 67, 28);
 		add(lblNewLabel_1_2);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("TELEFONE");
 		lblNewLabel_1_3.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblNewLabel_1_3.setBounds(325, 114, 88, 28);
+		lblNewLabel_1_3.setBounds(355, 114, 88, 28);
 		add(lblNewLabel_1_3);
 		
 		JLabel lblNewLabel_1_4 = new JLabel("EMAIL");
 		lblNewLabel_1_4.setFont(new Font("Dialog", Font.BOLD, 14));
 //		lblNewtFont(new Font("Verdana", Font.PLAIN, 12));
-		lblNewLabel_1_4.setBounds(245, 176, 67, 25);
+		lblNewLabel_1_4.setBounds(272, 176, 67, 25);
 		add(lblNewLabel_1_4);
 		
 		JTextField txtNome = new JTextField();
 		txtNome.setColumns(10);
-		txtNome.setBounds(86, 138, 214, 25);
+		txtNome.setBounds(45, 138, 284, 25);
 		add(txtNome);
 		
 		JTextField txtEmail = new JTextField();
 		txtEmail.setColumns(10);
-		txtEmail.setBounds(242, 201, 224, 25);
+		txtEmail.setBounds(272, 201, 224, 25);
 		add(txtEmail);
-		
-		JTextField txtCpf = new JTextField();
-		txtCpf.setColumns(10);
-		txtCpf.setBounds(84, 201, 133, 25);
-		add(txtCpf);
-		
-		JTextField txtTelefone = new JTextField();
-		txtTelefone.setColumns(10);
-		txtTelefone.setBounds(325, 138, 141, 25);
-		add(txtTelefone);
 		
 		JTextField inputLogradouro = new JTextField();
 		inputLogradouro.setColumns(10);
@@ -92,11 +84,6 @@ public class ViewCadastroClientes extends JPanel {
 		inputUF.setColumns(10);
 		inputUF.setBounds(437, 403, 59, 25);
 		add(inputUF);
-		
-		JTextField inputCEP = new JTextField();
-		inputCEP.setColumns(10);
-		inputCEP.setBounds(48, 342, 133, 25);
-		add(inputCEP);
 		
 		JTextField inputCidade = new JTextField();
 		inputCidade.setColumns(10);
@@ -153,16 +140,34 @@ public class ViewCadastroClientes extends JPanel {
 		lblNewLabel_3.setForeground(Color.WHITE);
 		lblNewLabel_3.setFont(new Font("Dialog", Font.BOLD, 14));
 		
+		JFormattedTextField txtTelefone1 = new JFormattedTextField();
+		txtTelefone1.setBounds(355, 138, 141, 25);
+		MaskFormatter txtTelefone = new MaskFormatter("(##) #####-####");
+		txtTelefone.install(txtTelefone1);
+		add(txtTelefone1);
+		
+		JFormattedTextField txtCpf1 = new JFormattedTextField();
+		txtCpf1.setBounds(45, 201, 182, 25);
+		MaskFormatter txtCpf = new MaskFormatter("###.###.###-##");
+		txtCpf.install(txtCpf1);
+		add(txtCpf1); 
+		
+		JFormattedTextField inputCEP1 = new JFormattedTextField();
+		inputCEP1.setBounds(45, 342, 133, 25);
+		MaskFormatter inputCep = new MaskFormatter("#####-###");
+		inputCep.install(inputCEP1);
+		add(inputCEP1);
+		
 		JPanel cadastrarCliente = new JPanel();
 		cadastrarCliente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(txtNome.getText().trim().equals("") || txtCpf.getText().trim().equals("") || txtTelefone.getText().trim().equals("") || txtEmail.getText().trim().equals("")
-						  || inputLogradouro.getText().trim().equals("") || inputNumero.getText().trim().equals("") || inputBairro.getText().trim().equals("") || inputCidade.getText().trim().equals("") || inputCEP.getText().trim().equals("") || inputUF.getText().trim().equals("")) {
+				if(txtNome.getText().trim().equals("") || txtCpf1.getText().trim().equals("") || txtTelefone1.getText().trim().equals("") || txtEmail.getText().trim().equals("")
+						  || inputLogradouro.getText().trim().equals("") || inputNumero.getText().trim().equals("") || inputBairro.getText().trim().equals("") || inputCidade.getText().trim().equals("") || inputCEP1.getText().trim().equals("") || inputUF.getText().trim().equals("")) {
 							JOptionPane.showMessageDialog(cadastrarCliente, "Preencha todos os campos obrigatórios!");
 						}else {
-							executar.postToClientes(null, txtNome.getText(), txtEmail.getText(), txtCpf.getText(), txtTelefone.getText());
-							executar.postToEndereco(null, inputLogradouro.getText(), inputNumero.getText(), inputComplemento.getText(), inputBairro.getText(), inputCidade.getText(), inputCEP.getText(), inputUF.getText());
+							executar.postToClientes(null, txtNome.getText(), txtEmail.getText(), txtCpf1.getText(), txtTelefone1.getText());
+							executar.postToEndereco(null, inputLogradouro.getText(), inputNumero.getText(), inputComplemento.getText(), inputBairro.getText(), inputCidade.getText(), inputCEP1.getText(), inputUF.getText());
 							JOptionPane.showMessageDialog(cadastrarCliente, "Cliente cadastrado!");
 						}
 					}	
@@ -188,8 +193,8 @@ public class ViewCadastroClientes extends JPanel {
 		lblNewLabel_1.setForeground(new Color(32, 92, 109));
 		add(lblNewLabel_1);
 		
+	
 		
 		
 	}
-
 }

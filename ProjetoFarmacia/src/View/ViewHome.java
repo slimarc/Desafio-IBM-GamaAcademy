@@ -39,9 +39,9 @@ public class ViewHome extends JFrame {
 	private ViewListarProduto viewCadastrarProduto;
 	private ViewAlterarDeletar viewAlterarDeletar;
 	private ViewCadastroClientes viewCadastroClientes;
-	private ViewControleEstoque viewControleEstoque;
+	private ViewCadastrarPedido viewControleEstoque;
 	private ViewHistoricoTransacao viewHistoricoTransacao;
-	
+
 	
 	/**
 	 * Launch the application.
@@ -51,7 +51,7 @@ public class ViewHome extends JFrame {
 			public void run() {
 				try {
 					ViewHome frame = new ViewHome();
-					frame.setVisible(true); 
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -72,7 +72,7 @@ public class ViewHome extends JFrame {
 		viewCadastrarProduto = new ViewListarProduto();
 		viewAlterarDeletar = new ViewAlterarDeletar();
 		viewCadastroClientes = new ViewCadastroClientes();
-		viewControleEstoque = new ViewControleEstoque();
+		viewControleEstoque = new ViewCadastrarPedido();
 		viewHistoricoTransacao = new ViewHistoricoTransacao();
 		
 		setUndecorated(true);
@@ -131,7 +131,7 @@ public class ViewHome extends JFrame {
 		PainelEsquerdo.setBackground(new Color(32, 92, 109));
 		PainelEsquerdo.setLayout(null);
 		
-		JPanel buttonListagem = new JPanel();
+		JPanel buttonListagem = new JPanel(); 
 		buttonListagem.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		buttonListagem.setBounds(0, 135, 254, 71);
 		PainelEsquerdo.add(buttonListagem);
@@ -147,7 +147,7 @@ public class ViewHome extends JFrame {
 			}
 		});
 		
-		ArrayList<String[]> lista = executar.getClientes();
+		ArrayList<String[]> lista = executar.getClientes(); 
 		viewListagem.insertTable(lista);
 		
 		JLabel txtListarClientes = new JLabel("LISTAR CLIENTES");
@@ -203,7 +203,7 @@ public class ViewHome extends JFrame {
 			}
 		});
 		
-		JLabel txtControleEstoque = new JLabel("CONTROLE ESTOQUE");
+		JLabel txtControleEstoque = new JLabel("CADASTRAR PEDIDO");
 		txtControleEstoque.setHorizontalTextPosition(SwingConstants.LEADING);
 		txtControleEstoque.setForeground(Color.WHITE);
 		txtControleEstoque.setFont(new Font("Dialog", Font.BOLD, 14));
@@ -227,8 +227,9 @@ public class ViewHome extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				menuClicked(viewHistoricoTransacao);
 				ArrayList<String[]> lista = executar.getTransacoes();
-				viewHistoricoTransacao.insertTable(lista);
 				
+				viewHistoricoTransacao.insertTable(lista);
+
 			}
 		});
 		
@@ -299,7 +300,7 @@ public class ViewHome extends JFrame {
 		buttonAlterarDeletar.add(imgCadastarClientes_2);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(ViewHome.class.getResource("/View/image/icon.png")));
+		lblNewLabel.setIcon(new ImageIcon(ViewHome.class.getResource("/View/image/iconTB.png")));
 		lblNewLabel.setBounds(58, 14, 158, 100);
 		PainelEsquerdo.add(lblNewLabel);
 		
@@ -330,12 +331,15 @@ public class ViewHome extends JFrame {
 		backgroud.add(PainelSuperior);
 		painelMain.setLayout(null);
 		
+		
+//		painelMain.add(PainelSuperior)
 		painelMain.add(viewHistoricoTransacao);
 		painelMain.add(viewControleEstoque);
 		painelMain.add(viewCadastroClientes);
 		painelMain.add(viewAlterarDeletar);
 		painelMain.add(viewCadastrarProduto);
 		painelMain.add(viewListagem);
+		
 		
 		menuClicked(viewListagem);
 
@@ -391,3 +395,5 @@ public class ViewHome extends JFrame {
 }
 
 
+
+    

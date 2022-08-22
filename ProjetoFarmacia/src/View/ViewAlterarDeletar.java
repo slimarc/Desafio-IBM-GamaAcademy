@@ -4,16 +4,12 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Panel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -39,7 +35,7 @@ public class ViewAlterarDeletar extends JPanel {
 	private JTextField inputCidade;
 	private JTextField inputComplemento;
 	private JTextField inputBairro;
-	private JLabel titleLogradouro;
+	private JLabel titleLogradouro; 
 	private JLabel titleCEP;
 	private JLabel titleCidade;
 	private JLabel titleComplemento;
@@ -57,7 +53,7 @@ public class ViewAlterarDeletar extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ViewAlterarDeletar() {
+	public ViewAlterarDeletar() { 
 		setBounds(0, 0, 547, 567);
 		setBackground(new Color(217, 217, 217));
 		setLayout(null);
@@ -103,25 +99,20 @@ public class ViewAlterarDeletar extends JPanel {
 				txtIdCliente.setText(lista[0]);
 				txtNome.setText(lista[1]);
 				txtEmail.setText(lista[2]);
-				txtCpf.setText(lista[3]);
+				txtCpf.setText(lista[3]); 
 				txtTelefone.setText(lista[4]);
-				
 
 				inputLogradouro.setText(listEnd[0]);
-				inputCEP.setText(listEnd[1]);
-				inputCidade.setText(listEnd[2]);
-				inputNumero.setText(listEnd[3]);
-				inputComplemento.setText(listEnd[4]);
-				inputBairro.setText(listEnd[5]);
-				inputUF.setText(listEnd[6]);
-				
-			
-				
+				inputNumero.setText(listEnd[1]);
+				inputComplemento.setText(listEnd[2]);
+				inputBairro.setText(listEnd[3]);
+				inputCidade.setText(listEnd[4]);
+				inputCEP.setText(listEnd[5]);
+				inputUF.setText(listEnd[6]);		
 			}
 		});
 	
-		
-		
+	
 		
 		JLabel lblNewLabel_1 = new JLabel("ID ");
 		lblNewLabel_1.setFont(new Font("Dialog", Font.BOLD, 14));
@@ -154,7 +145,7 @@ public class ViewAlterarDeletar extends JPanel {
 		txtIdCliente = new JTextField();
 		txtIdCliente.setBounds(48, 166, 60, 25);
 		add(txtIdCliente);
-		txtIdCliente.setColumns(10);
+		txtIdCliente.setColumns(10); 
 		
 		txtNome = new JTextField();
 		txtNome.setColumns(10);
